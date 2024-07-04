@@ -8,14 +8,16 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class FlywheelSubsystem extends SubsystemBase {
     private final TalonFX feedFlywheel;
     private final TalonFX shootFlywheel;
     private final VelocityVoltage shootFlywheelVelocity = new VelocityVoltage(0);
     
     public FlywheelSubsystem() {
-        feedFlywheel = new TalonFX(FlywheelConstants.kFeedFlywheel);
-        shootFlywheel = new TalonFX(FlywheelConstants.kShootFlywheel);
+        feedFlywheel = new TalonFX(FlywheelConstants.kFeedFlywheelID);
+        shootFlywheel = new TalonFX(FlywheelConstants.kShootFlywheelID);
 
         TalonFXConfiguration FeedConfig = new TalonFXConfiguration();
 
@@ -52,5 +54,11 @@ public class FlywheelSubsystem extends SubsystemBase {
 
     public void brakeShootFlywheel() {
         shootFlywheel.setControl(shootFlywheelVelocity.withVelocity(0));
+    }
+
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("DV", shootFlywheelVelocity.Velocity);
+        SmartDashboard.putNumber("CV", getFeedFlywheelSpeed());
     }
 }       

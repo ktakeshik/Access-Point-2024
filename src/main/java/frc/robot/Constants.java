@@ -20,20 +20,20 @@ public final class Constants {
     public static final double kWheelDiameter = Units.inchesToMeters(4);
 
     // Drive Port Constants
-    public static final int kLeftFrontWheelPort = 5;
-    public static final int kLeftFrontRotationPort = 4;
+    public static final int kLeftFrontWheelPort = 16;
+    public static final int kLeftFrontRotationPort = 17;
     public static final int kLeftFrontCANCoderPort = 3;
 
-    public static final int kRightFrontWheelPort = 12;
-    public static final int kRightFrontRotationPort = 13;
+    public static final int kRightFrontWheelPort = 2;
+    public static final int kRightFrontRotationPort = 3;
     public static final int kRightFrontCANCoderPort = 1;
 
-    public static final int kLeftBackWheelPort = 3;
-    public static final int kLeftBackRotationPort = 2;
+    public static final int kLeftBackWheelPort = 18;
+    public static final int kLeftBackRotationPort = 19;
     public static final int kLeftBackCANCoderPort = 2;
 
-    public static final int kRightBackWheelPort = 15;
-    public static final int kRightBackRotationPort = 14;
+    public static final int kRightBackWheelPort = 20;
+    public static final int kRightBackRotationPort = 21;
     public static final int kRightBackCANCoderPort = 4;
 
     public static final double kLeftFrontCANCoderOffset = 4.9;
@@ -185,11 +185,14 @@ public final class Constants {
   }
 
   public final static class FlywheelConstants {
-    public final static int kFeedFlywheel = 6;
-    public final static int kShootFlywheel = 11;
+    public final static int kFeedFlywheelID = 6;
+    public final static int kShootFlywheelID = 11;
 
     public final static boolean kFeedFlywheelReversed = false;
     public final static boolean kShootFlywheelReversed = true;
+
+    public final static double kFlywheelShootSpeed = 1;
+    public final static double kFlywheelEjectSpeed = 25;
   }
 
   public static class OperatorConstants {

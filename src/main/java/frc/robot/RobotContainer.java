@@ -7,9 +7,16 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.feeder.feedCommand;
+import frc.robot.commands.feeder.reverseFeedCommand;
+import frc.robot.commands.flywheel.brakeCommand;
+import frc.robot.commands.flywheel.scoringSpeedCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.FlywheelSubsystem;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -21,10 +28,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final FlywheelSubsystem m_flywheelSubsystem = new FlywheelSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  private final GenericHID primaryGamepad = new GenericHID(OperatorConstants.kPrimaryGamepadPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -43,12 +50,23 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
+    
+    new JoystickButton(primaryGamepad, OperatorConstants.kLeftBumperPort).onTrue(
+      new scoringSpeedCommand(m_flywheelSubsystem)
+    ); 
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    new JoystickButton(primaryGamepad, OperatorConstants.kBButtonPort).onTrue(
+      new brakeCommand(m_flywheelSubsystem)
+    );
+
+    new JoystickButton(primaryGamepad, OperatorConstants.kRightBumperPort).onTrue(
+      new feedCommand(m_flywheelSubsystem, primaryGamepad)
+    ); 
+
+    new JoystickButton(primaryGamepad, OperatorConstants.kAButtonPort).onTrue(
+      new reverseFeedCommand(m_flywheelSubsystem, primaryGamepad)
+    );
+
   }
 
   /**
