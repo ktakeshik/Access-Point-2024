@@ -192,7 +192,7 @@ public final class Constants {
     public final static boolean kShootFlywheelReversed = true;
 
     public final static double kFlywheelMAXSpeed = 6000;
-    public final static double kFlywheelShootSpeed = 300;
+    public final static double kFlywheelShootSpeed = 50;
     public final static double kFlywheelEjectSpeed = 25;
 
     public final static double kFlywheelFeedSpeed = 0.15;

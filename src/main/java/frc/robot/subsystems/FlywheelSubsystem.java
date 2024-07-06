@@ -23,9 +23,9 @@ public class FlywheelSubsystem extends SubsystemBase {
 
         TalonFXConfiguration ShootConfig = new TalonFXConfiguration();
         ShootConfig.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction
-        ShootConfig.Slot0.kV = 0.22; // A velocity target of 1 rps results in 0.12 V output
-        ShootConfig.Slot0.kP = 1.01; // An error of 1 rps results in 0.11 V output
-        ShootConfig.Slot0.kI = 0.2; // no output for integrated error
+        ShootConfig.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+        ShootConfig.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+        ShootConfig.Slot0.kI = 0.1; // no output for integrated error
         ShootConfig.Slot0.kD = 0; // no output for error derivative
 
         feedFlywheel.getConfigurator().apply(FeedConfig);
