@@ -1,5 +1,6 @@
 package frc.robot.commands.feeder;
 
+import frc.robot.Constants.FlywheelConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.FlywheelSubsystem;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -20,7 +21,7 @@ public class feedCommand extends Command {
 
   @Override
   public void initialize() {
-    m_flywheelSubsystem.setFeedSpeed(0.5);
+    m_flywheelSubsystem.setFeedSpeed(FlywheelConstants.kFlywheelFeedSpeed);
   }
 
   @Override
