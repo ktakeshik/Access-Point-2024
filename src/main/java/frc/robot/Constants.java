@@ -184,6 +184,13 @@ public final class Constants {
 
   }
 
+  
+  public static class LEDConstants {
+    public static final int CANdleID = 4;
+    public static final int LEDcount = 22; //69
+  }
+
+
   public final static class FlywheelConstants {
     public final static int kFeedFlywheelID = 6;
     public final static int kShootFlywheelID = 11;
